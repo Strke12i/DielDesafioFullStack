@@ -21,12 +21,15 @@ export const AuthProvider = ({children}: any) => {
 
     useEffect(() => {
         const LoadToken = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                setAuthState({ token, authenticated: true });
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            const token = sessionStorage.getItem('token');
+            
+            if(token){
+                setAuthState({token, authenticated: true});
+                axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+                
             }
         }
+
         LoadToken();
     }, []);
 
@@ -40,7 +43,7 @@ export const AuthProvider = ({children}: any) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`;
 
 
-            localStorage.setItem('token', result.data.token);
+            sessionStorage.setItem('token', result.data.token);
             return {
                 error: false,
                 message: 'Register success',
@@ -57,7 +60,7 @@ export const AuthProvider = ({children}: any) => {
         try{
             setAuthState({ token: null, authenticated: false });
             axios.defaults.headers.common['Authorization'] = '';
-            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             return {
                 error: false,
                 message: 'Logout success',
@@ -71,7 +74,7 @@ export const AuthProvider = ({children}: any) => {
     }
 
     const onRegister = async (email: string, password: string, name: string) => {
-        try{    
+        try{                
             return await clientUser.post('/', { email, password, name });
         }catch(e){
             return {
