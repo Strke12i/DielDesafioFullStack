@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../lib/prisma';
 import bcrypt from 'bcrypt';
+import { log } from 'console';
 
 export class UserController {
     public async getUsers(req: Request, res: Response, next: NextFunction) {
@@ -38,7 +39,7 @@ export class UserController {
             }
 
             password = await bcrypt.hash(password, 10);
-
+         
             const user = await prisma.user.create({
                 data: {
                     email,
@@ -84,7 +85,7 @@ export class UserController {
             });
             res.status(200).json({ message: 'User updated successfully' });
         }catch (error) {
-            res.status(500).json({ message: 'Error while updating user' });
+            res.status(500).json({ message: error });
         }
     }
 
@@ -115,5 +116,29 @@ export class UserController {
             res.status(500).json({ message: 'Error while fetching user tasks' });
         }
     }
-
+    public async getUserTasksByDate(req: Request, res: Response) {
+        try {
+            let { id, date } = req.params;
+            let startDate = new Date(date);
+            startDate.setUTCHours(23, 59, 58, 999);
+            let endDate = new Date(date);
+            endDate.setUTCHours(0,0,0,1);
+            const tasks = await prisma.task.findMany({
+                where: {
+                    userId: id,
+                    AND: {
+                        StartDate: {
+                            lte: startDate,
+                        },
+                        EndDate: {
+                            gte: endDate,
+                        },
+                    }
+                },
+            });
+            res.status(200).json(tasks);
+        }catch (error) {
+            res.status(500).json({ message: 'Error while fetching user tasks' });
+        }
+    }
 }

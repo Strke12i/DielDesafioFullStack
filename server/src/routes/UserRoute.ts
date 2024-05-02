@@ -10,6 +10,7 @@ userRouter.get('/:id', userController.getUser);
 userRouter.post('/', userController.createUser);
 userRouter.put('/:id', userController.updateUser);
 userRouter.delete('/:id', userController.deleteUser);
-userRouter.post('/tasks/:id', userController.getUserTasks);
+userRouter.get('/tasks/:id', userController.getUserTasks);
+userRouter.get('/tasks/:id/:date', userController.getUserTasksByDate);
 
 export default userRouter;

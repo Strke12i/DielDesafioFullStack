@@ -37,10 +37,37 @@ model Task {
   id        String   @id @default(uuid())
   title     String
   description   String
-  status    String
+  status    String  @default("PENDING")
+  StartDate DateTime
+  EndDate   DateTime 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   taskUsers TaskUsers[]
+  tags      TaskTag[]
+}
+
+enum Status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  ABORTED
+}
+
+model TaskTag {
+  taskId String
+  tagId  String
+  task   Task @relation(fields: [taskId], references: [id])
+  tag    Tag  @relation(fields: [tagId], references: [id])
+
+  @@id([taskId, tagId])
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks     TaskTag[]
 }

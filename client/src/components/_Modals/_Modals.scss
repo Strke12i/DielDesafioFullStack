@@ -1,0 +1,204 @@
+@import "../../styles/colors";
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+}
+
+.modal-content {
+  background-color: $light-color;
+  margin: 15% auto;
+  margin-top: 5%;
+  padding: 20px;
+  border: 10px inset $primary-color;
+  width: 60%;
+  border-radius: 1.5rem;
+  height: fit-content;
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        h2{
+            color: $dark-color;
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+    }
+
+  .close {
+    color: $light-color;
+    float: right;
+    font-size: 2rem;
+    color: $danger-color;
+    background-color: inherit;
+
+    &:hover{
+        color: #d31608; 
+        font-size: 2.5rem;
+    }
+}
+
+
+  label {
+    padding: 0.5rem;
+    color: $dark-color;
+    font-size: large;
+    width: 100%;
+  }
+
+  input {
+    width: 90%;
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+
+  textarea {
+    width: 90%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    border: 1px solid $primary-color;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .dates {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1rem;
+
+    input {
+      width: 70%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
+      border: 1px solid $primary-color;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    button{
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: $light-color;
+      
+  }
+  }
+
+}
+
+.view-tasks{
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    flex-wrap: wrap;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    overflow: auto;
+    height: 50vh;
+    
+}
+
+.task-card{
+  background-color: $light-color;
+  border: 1px solid $primary-color;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  margin: 0.3rem 0.6rem 0.3rem 0.6rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+
+.task-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .buttons{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .delete{
+    color: $danger-color;
+
+    &:hover {
+      font-size: 1.8rem;
+    }
+  }
+
+  .edit{
+    color: $primary-color;
+    &:hover {
+      font-size: 1.8rem;
+    }
+  }
+
+  .task-title{
+      font-size: 1rem;
+      color: $dark-color;
+      text-align: center;
+  }
+
+  .task-description{
+      font-size: 0.8rem;
+      color: $dark-color;
+      font-style: italic;
+  }
+
+  .task-dates{
+      display: flex;
+      justify-content: space-between;
+
+      .task-date{
+          font-size: 1rem;
+          color: $dark-color;
+      }
+  }
+
+  span {
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.completed{
+    color: $success-color;
+}
+
+.pending{
+    color: $warning-color;
+}
+
+.in_progress{
+    color: $info-color;
+}
+
+.aborted{
+    color: $danger-color;
+}
+
+select {
+  border: 1px solid $primary-color;
+  border-radius: 0.5rem;
+  font-size: larger;
+  padding: 0.4rem;
+  font-weight: bold;
+}

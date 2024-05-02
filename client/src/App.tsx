@@ -3,6 +3,7 @@ import "./App.scss";
 import { useAuth } from "./context/AuthContext";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { LoginForm, SignupForm } from "./components/_Forms/Forms";
+import { UserProvider } from "./context/UserContext";
 
 
 const App = () => {  
@@ -17,7 +18,7 @@ const App = () => {
             authState?.authenticated ? <Navigate to="/dashboard" /> : <SignupForm />
           } />
           <Route path="/dashboard" element={
-            authState?.authenticated ? <Dashboard /> : <Navigate to="/login" />
+            authState?.authenticated ? <UserProvider><Dashboard /></UserProvider> : <Navigate to="/login" />
           } />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>

@@ -14,14 +14,16 @@ app.use(cors(
 
 app.use('/api', routes)
 
-app.listen(3000, () => {
-    try {
+app.listen(5000, () => {
+    try{
         prisma.$connect()
-    } catch (error) {
-
-        console.log('Error: ', error)
+        console.log('Database connected')
+    }catch(err){
+        console.log('Error: ', err)
     }
-    console.log('Server is running on port 3000')
+
+   
+    console.log('Server is running on port 5000')
 }).on('error', (err) => {
     console.log('Error: ', err)
 })

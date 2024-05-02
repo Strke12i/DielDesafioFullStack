@@ -1,7 +1,8 @@
-@import "./styles/colors"; 
+@import "./styles/colors";
 
 .App {
   text-align: center;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .App-logo {
@@ -36,5 +37,53 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 0;
+  background-color: $light-color;
+  border-bottom: 2px solid $dark-color;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  width: 100%;
+  font-size: large;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+  }
+
+  &::placeholder {
+    color: $dark-color;
+  }
+}
+
+.button{
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+
+  background-color: $secondary-color;
+  color: $light-color;
+  border: none;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  &:hover{
+      background-color: $primary-color;
+  }
+
+  &:active{
+      background-color: $dark-color;
+  }
+
+  span{
+      margin: 0 0.5rem;
+      color: $light-color;
+      font-size: large;
   }
 }
